@@ -56,11 +56,27 @@ public class Main {
 
     // 4. decipherThis
         public static String decipherThis(String encrypted){
-            String encrypted = "";
-            for(int i = 0;i<encrypted.length();i++){
-
-            }
+        int i = 0;
+        while (i < word.length() && Character.isDigit(word.charAt(i))) {
+            i++;
         }
+        int charCode = Integer.parseInt(word.substring(0, i));
+        char firstLetter = (char) charCode;
+
+        // Construct the new word
+        String newWord = Character.toString(firstLetter);
+
+        if (word.length() - i > 2) {
+            // Swap the second and last letters
+            newWord += word.charAt(word.length() - 1);
+            newWord += word.substring(i + 1, word.length() - 1);
+            newWord += word.charAt(i);
+        } else if (word.length() - i == 2) {
+            newWord += word.charAt(i + 1); // If word is only 2 characters long
+        }
+
+        return newWord;
+    }
 
 
 
